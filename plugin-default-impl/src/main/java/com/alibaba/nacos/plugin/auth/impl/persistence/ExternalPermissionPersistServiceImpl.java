@@ -43,26 +43,26 @@ import static com.alibaba.nacos.plugin.auth.impl.persistence.AuthRowMapperManage
 @Conditional(value = ConditionOnExternalStorage.class)
 @Component
 public class ExternalPermissionPersistServiceImpl implements PermissionPersistService {
-    
+
     @Autowired
     private ExternalStoragePersistServiceImpl persistService;
-    
+
     private JdbcTemplate jt;
 
     private static final String PATTERN_STR = "*";
-    
+
     @PostConstruct
     protected void init() {
         jt = persistService.getJdbcTemplate();
     }
-    
+
     @Override
     public Page<PermissionInfo> getPermissions(String role, int pageNo, int pageSize) {
         PaginationHelper<PermissionInfo> helper = persistService.createPaginationHelper();
-        
+
         String sqlCountRows = "SELECT count(*) FROM permissions WHERE ";
-        String sqlFetchRows = "SELECT role,resource,action FROM permissions WHERE ";
-        
+        String sqlFetchRows = "SELECT role,resources,action FROM permissions WHERE ";
+
         String where = " role= ? ";
         List<String> params = new ArrayList<>();
         if (StringUtils.isNotBlank(role)) {
@@ -70,26 +70,26 @@ public class ExternalPermissionPersistServiceImpl implements PermissionPersistSe
         } else {
             where = " 1=1 ";
         }
-        
+
         try {
             Page<PermissionInfo> pageInfo = helper
                     .fetchPage(sqlCountRows + where, sqlFetchRows + where, params.toArray(), pageNo, pageSize,
                             PERMISSION_ROW_MAPPER);
-            
+
             if (pageInfo == null) {
                 pageInfo = new Page<>();
                 pageInfo.setTotalCount(0);
                 pageInfo.setPageItems(new ArrayList<>());
             }
-            
+
             return pageInfo;
-            
+
         } catch (CannotGetJdbcConnectionException e) {
             LogUtil.FATAL_LOG.error("[db-error] " + e.toString(), e);
             throw e;
         }
     }
-    
+
     /**
      * Execute add permission operation.
      *
@@ -99,9 +99,9 @@ public class ExternalPermissionPersistServiceImpl implements PermissionPersistSe
      */
     @Override
     public void addPermission(String role, String resource, String action) {
-        
-        String sql = "INSERT INTO permissions (role, resource, action) VALUES (?, ?, ?)";
-        
+
+        String sql = "INSERT INTO permissions (role, resources, action) VALUES (?, ?, ?)";
+
         try {
             jt.update(sql, role, resource, action);
         } catch (CannotGetJdbcConnectionException e) {
@@ -109,7 +109,7 @@ public class ExternalPermissionPersistServiceImpl implements PermissionPersistSe
             throw e;
         }
     }
-    
+
     /**
      * Execute delete permission operation.
      *
@@ -119,8 +119,8 @@ public class ExternalPermissionPersistServiceImpl implements PermissionPersistSe
      */
     @Override
     public void deletePermission(String role, String resource, String action) {
-        
-        String sql = "DELETE FROM permissions WHERE role=? AND resource=? AND action=?";
+
+        String sql = "DELETE FROM permissions WHERE role=? AND resources=? AND action=?";
         try {
             jt.update(sql, role, resource, action);
         } catch (CannotGetJdbcConnectionException e) {
@@ -134,7 +134,7 @@ public class ExternalPermissionPersistServiceImpl implements PermissionPersistSe
         PaginationHelper<PermissionInfo> helper = persistService.createPaginationHelper();
 
         String sqlCountRows = "SELECT count(*) FROM permissions ";
-        String sqlFetchRows = "SELECT role,resource,action FROM permissions ";
+        String sqlFetchRows = "SELECT role,resources,action FROM permissions ";
 
         StringBuilder where = new StringBuilder(" WHERE 1=1");
         List<String> params = new ArrayList<>();

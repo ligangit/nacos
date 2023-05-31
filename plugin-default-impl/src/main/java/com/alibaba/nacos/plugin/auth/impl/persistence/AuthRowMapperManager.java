@@ -34,7 +34,7 @@ public class AuthRowMapperManager {
     public static final RoleInfoRowMapper ROLE_INFO_ROW_MAPPER = new RoleInfoRowMapper();
     
     public static final PermissionRowMapper PERMISSION_ROW_MAPPER = new PermissionRowMapper();
-    
+
     static {
         // USER_ROW_MAPPER
         RowMapperManager.registerRowMapper(USER_ROW_MAPPER.getClass().getCanonicalName(), USER_ROW_MAPPER);
@@ -73,7 +73,7 @@ public class AuthRowMapperManager {
         @Override
         public PermissionInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
             PermissionInfo info = new PermissionInfo();
-            info.setResource(rs.getString("resource"));
+            info.setResource(rs.getString("resources"));
             info.setAction(rs.getString("action"));
             info.setRole(rs.getString("role"));
             return info;
