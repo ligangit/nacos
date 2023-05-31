@@ -26,5 +26,11 @@ db.testQuery=select 1 from dual
 ```
 后续实际使用时，请切换oracle驱动包。
 
+nacos源码打包：
+```shell
+mvn -Prelease-nacos -Dmaven.test.skip=true -Dpmd.skip=true -Drat.skip=true -Dcheckstyle.skip=true clean install -U
+```
+执行完打包命令之后，“nacos-distrubution”模块中，target/nacos-server-2.2.0.zip 文件就是nacos相关的包
+
 项目切换为oracle，参考的博客“https://blog.csdn.net/qq_37279783/article/details/129383362”。
 具体的nacos相关操作，请参考nacos官方文档
