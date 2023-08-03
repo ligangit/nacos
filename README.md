@@ -1,6 +1,10 @@
 # 简介
-当前项目是使用的nacos-2.2.0版本源码改造，切换为oracle数据库。
+分支说明：
+master：nacos官网源码的分支
+nacos-2.2.0：nacos官方2.2.0版本的源码分支
+nacos-2.2.0-oracle：是本仓库中根据2.2.0版本源码改造，适配oracle数据库处理的
 
+在nacos-2.2.0-oracle分支版本中：
 其中“nacos-config”模块中，src/main/resources/META-INF/nacos-oracle.sql文件为oracle的初始化sql。
 修改的配置项：主要:
 ```properties
