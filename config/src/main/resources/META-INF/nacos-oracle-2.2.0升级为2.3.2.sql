@@ -1,0 +1,92 @@
+
+
+
+CREATE OR REPLACE TRIGGER config_info_seq_tr
+    BEFORE INSERT ON config_info FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT SEQ_CONFIG_INFO.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+
+/
+
+
+CREATE OR REPLACE TRIGGER config_info_aggr_seq_tr
+    BEFORE INSERT ON config_info_aggr FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT SEQ_CONFIG_INFO_AGGR.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER config_info_beta_seq_tr
+    BEFORE INSERT ON config_info_beta FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT SEQ_CONFIG_INFO_BETA.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER config_info_tag_seq_tr
+    BEFORE INSERT ON config_info_tag FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT SEQ_CONFIG_INFO_TAG.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER config_tags_relation_seq_tr
+    BEFORE INSERT ON config_tags_relation FOR EACH ROW
+    WHEN (NEW.nid IS NULL)
+BEGIN
+    SELECT SEQ_CONFIG_TAGS_RELATION.NEXTVAL INTO :NEW.nid FROM DUAL;
+END;
+/
+
+
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE group_capacity_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER group_capacity_seq_tr
+    BEFORE INSERT ON group_capacity FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT group_capacity_seq.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/
+
+
+
+CREATE OR REPLACE TRIGGER his_config_info_seq_tr
+    BEFORE INSERT ON his_config_info FOR EACH ROW
+    WHEN (NEW.nid IS NULL)
+BEGIN
+    SELECT SEQ_HIS_CONFIG_INFO.NEXTVAL INTO :NEW.nid FROM DUAL;
+END;
+/
+
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE tenant_capacity_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER tenant_capacity_seq_tr
+    BEFORE INSERT ON tenant_capacity FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT tenant_capacity_seq.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER tenant_info_seq_tr
+    BEFORE INSERT ON tenant_info FOR EACH ROW
+    WHEN (NEW.id IS NULL)
+BEGIN
+    SELECT SEQ_TENANT_INFO.NEXTVAL INTO :NEW.id FROM DUAL;
+END;
+/

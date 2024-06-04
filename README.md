@@ -28,6 +28,16 @@ nacos.core.auth.server.identity.key=serverIdentity
 nacos.core.auth.server.identity.value=security
 nacos.core.auth.plugin.nacos.token.secret.key=这是配置的秘钥，需要自己生成
 ```
+生成秘钥可以用这个方式：
+```java
+
+    public static void main(String[] args) {
+        String bac = RandomUtil.randomString(64);
+        System.out.println(bac);
+        String secretKey = Base64.getEncoder().encodeToString(bac.getBytes(StandardCharsets.UTF_8));
+        System.out.println("nacos.core.auth.plugin.nacos.token.secret.key: " + secretKey);
+    }
+```
 
 关于oracle驱动，目前是将一个oracle的驱动包，打到了个人本地maven仓库，所以引入的依赖是:
 ```xml
