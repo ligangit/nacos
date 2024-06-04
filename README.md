@@ -3,6 +3,7 @@
 master：nacos官网源码的分支
 nacos-2.2.0：nacos官方2.2.0版本的源码分支
 nacos-2.2.0-oracle：是本仓库中根据2.2.0版本源码改造，适配oracle数据库处理的
+nacos-2.3.2：nacos官方2.3.2版本的源码分支
 
 在nacos-2.2.0-oracle分支版本中：
 其中“nacos-config”模块中，src/main/resources/META-INF/nacos-oracle.sql文件为oracle的初始化sql。
