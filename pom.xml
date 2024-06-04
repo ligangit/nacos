@@ -151,6 +151,7 @@
         <rpc-grpc-impl.version>${jraft-core.version}</rpc-grpc-impl.version>
         <SnakeYaml.version>2.0</SnakeYaml.version>
         <spring-web.version>5.3.33</spring-web.version>
+        <Oracle.version>1.0</Oracle.version>
     </properties>
     <!-- == -->
     <!-- =========================================================Build plugins================================================ -->
@@ -642,6 +643,11 @@
     sub-modules will not introduce these dependencies by default -->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>${Oracle.version}</version>
+            </dependency>
             <dependency>
                 <!-- Import dependency management from Spring Boot -->
                 <groupId>org.springframework.boot</groupId>

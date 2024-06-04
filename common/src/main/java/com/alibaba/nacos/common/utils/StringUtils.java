@@ -53,7 +53,10 @@ public class StringUtils {
     public static final String FOLDER_SEPARATOR = "/";
     
     public static final String WINDOWS_FOLDER_SEPARATOR = "\\";
-    
+
+    //增加静态字符串
+    public static final String NULL = "null";
+
     /**
      * <p>Create a string with encoding format as utf8.</p>
      *
