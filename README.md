@@ -25,7 +25,7 @@ db.testQuery=select 1 from dual
 # 需要开启权限认证，2.2.3版本开始默认是没有权限认证的
 nacos.core.auth.enabled=true
 nacos.core.auth.server.identity.key=serverAuthKey
-nacos.core.auth.server.identity.value=server@v2.2.0AtuhValue
+nacos.core.auth.server.identity.value=server@v2.3.2AtuhValue
 nacos.core.auth.plugin.nacos.token.secret.key=这是配置的秘钥，需要自己生成
 ```
 生成秘钥可以用这个方式：
